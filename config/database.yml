@@ -1,0 +1,22 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: Root@123
+
+development:
+  <<: *default
+  database: rails_jwt_development
+
+test:
+  <<: *default
+  database: rails_jwt_test
+
+production:
+  <<: *default
+  database: rails_jwt_production
+  username: rails_jwt
+  password: <%= ENV["RAILS_JWT_DATABASE_PASSWORD"] %>
