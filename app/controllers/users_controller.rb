@@ -5,11 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    # data = {
-    #   @user.map do |user|
-    #     {email:user.email, name: @user.name, username: user.username}
-    #   end
-    # }
+    
     render json: @users, status: :ok
   end
 
@@ -23,7 +19,6 @@ class UsersController < ApplicationController
     #params.delete(:user)
     @user = User.new(user_params)
 
-    #data = {email: @user.email, name: @user.name, username: @user.username}
     if @user.save
       render json: @user, status: :created
     else
