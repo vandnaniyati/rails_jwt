@@ -5,6 +5,11 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
+    # data = {
+    #   @user.map do |user|
+    #     {email:user.email, name: @user.name, username: user.username}
+    #   end
+    # }
     render json: @users, status: :ok
   end
 
@@ -15,7 +20,10 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    #params.delete(:user)
     @user = User.new(user_params)
+
+    #data = {email: @user.email, name: @user.name, username: @user.username}
     if @user.save
       render json: @user, status: :created
     else
@@ -26,7 +34,9 @@ class UsersController < ApplicationController
 
   # PUT /users/{username}
   def update
-    unless @user.update(user_params)
+    if @user.update(user_params)
+      render json: @user
+    else
       render json: { errors: @user.errors.full_messages },
              status: :unprocessable_entity
     end
@@ -47,7 +57,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(
-      :avatar, :name, :username, :email, :password, :password_confirmation
+       :name, :username, :email, :password, :password_confirmation
     )
   end
 end
