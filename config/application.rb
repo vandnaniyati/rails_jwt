@@ -26,4 +26,7 @@ module RailsJwt
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
   end
+  ApiPagination.configure do |config|
+    config.paginator = :will_paginate 
+  end
 end

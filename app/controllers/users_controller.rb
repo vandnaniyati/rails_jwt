@@ -4,14 +4,18 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 2)
     
     render json: @users, status: :ok
+    #paginate json: @users
+
   end
 
   # GET /users/{username}
   def show
     render json: @user, status: :ok
+    paginate json: @users, per_page: 2
+
   end
 
   # POST /users
