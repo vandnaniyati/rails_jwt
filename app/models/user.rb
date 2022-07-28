@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  self.per_page = 10
+
   has_secure_password
   #mount_uploader :avatar, AvatarUploader
   validates :email, presence: true, uniqueness: true

@@ -4,17 +4,29 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.paginate(page: params[:page], per_page: 2)
-    
-    render json: @users, status: :ok
-    #paginate json: @users
+    if params[:search_name].present?
+    @users = User.where("name LIKE ?", "%#{params[:search_name]}%").paginate(page: params[:page])    
+    else
+    @users = User.paginate(page: params[:page])    
+    end
+    render json: {user:@users,  meta:pagination_meta(@users)}
 
+  end
+  
+  def pagination_meta(user)       
+    {        
+     current_page: user.current_page,        
+     next_page: user.next_page,        
+     per_page: user.per_page,        
+     total_pages: user.total_pages,        
+     total_entries: user.total_entries
+    }  
   end
 
   # GET /users/{username}
   def show
     render json: @user, status: :ok
-    paginate json: @users, per_page: 2
+
 
   end
 

@@ -30,7 +30,7 @@ gem 'will_paginate'
 gem 'api-pagination'
 
 #gem 'pagy'
-#gem 'kaminari'
+gem 'kaminari'
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
