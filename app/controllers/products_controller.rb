@@ -3,8 +3,11 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.all
-
+    if params[:search_name].present?
+      @products = Product.where("name LIKE ?", "%#{params[:search_name]}%").paginate(page: params[:page])
+    else
+      @products = Product.paginate(page: params[:page])
+    end
     render json: @products
   end
 
