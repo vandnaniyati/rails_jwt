@@ -6,5 +6,6 @@ class CreateProducts < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_column :products, :user_id, :integer  
   end
 end

@@ -29,6 +29,8 @@ gem 'jwt'
 gem 'will_paginate'
 
 gem 'api-pagination'
+gem 'delayed_job_active_record'
+gem 'active_model_serializers'
 
 #gem 'pagy'
 gem 'kaminari'

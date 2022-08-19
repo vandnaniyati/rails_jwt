@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     else
     @users = User.paginate(page: params[:page])    
     end
-    render json: {user:@users,  meta:pagination_meta(@users)}
+    render json: {user:@users,  meta: pagination_meta(@users)}
 
   end
   
@@ -26,8 +26,6 @@ class UsersController < ApplicationController
   # GET /users/{username}
   def show
     render json: @user, status: :ok
-
-
   end
 
   # POST /users

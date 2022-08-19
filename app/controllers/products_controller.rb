@@ -18,10 +18,11 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
+    # @product = @current_user.products.new(product_params)
     @product = Product.new(product_params)
      
     if @product.save
-      ProductMailer.product_created.deliver_later
+      # ProductMailer.product_created(@current_user).deliver_now
       render json: @product, status: :created, location: @product
     else
       render json: @product.errors, status: :unprocessable_entity
@@ -30,6 +31,8 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1
   def update
+    puts @current_user.email
+    puts "======================================>>>>>>"
     if @product.update(product_params)
       render json: @product
     else
